@@ -15,6 +15,5 @@ export class AppComponent {
     if (user) {
       this.store.dispatch(AuthActions.loginSuccess(user));
     }
-    console.log('app init');
   }
 }
