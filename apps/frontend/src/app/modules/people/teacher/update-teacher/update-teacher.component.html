@@ -1,0 +1,36 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <demo-nx-breadcrumb [title]="'Add Teacher'" [items]="['Teachers']" [active_item]="'Add Teacher'">
+            </demo-nx-breadcrumb>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Add Teacher</h2>
+
+                    </div>
+                    <div class="body">
+                        <mat-tab-group mat-stretch-tabs animationDuration="900ms" mat-align-tabs="center">
+                            <mat-tab label="Login Details">
+                                <demo-nx-login-detail></demo-nx-login-detail>
+                            </mat-tab>
+                            <mat-tab label="Basic Details">
+                                <demo-nx-basic-detail></demo-nx-basic-detail>
+                            </mat-tab>
+                            <mat-tab label="Contact Details">
+                                <demo-nx-address-detail></demo-nx-address-detail>
+                            </mat-tab>
+                            <mat-tab label="Teacher Details">
+                                test
+                            </mat-tab>
+                        </mat-tab-group>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

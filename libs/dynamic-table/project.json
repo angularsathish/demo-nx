@@ -1,0 +1,27 @@
+{
+  "name": "dynamic-table",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/dynamic-table/src",
+  "prefix": "demo-nx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/dynamic-table"],
+      "options": {
+        "jestConfig": "libs/dynamic-table/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/dynamic-table/**/*.ts",
+          "libs/dynamic-table/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,164 @@
+<form class="register-form m-4" [formGroup]="addressDetailForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="emailId">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error
+                    *ngIf="addressDetailForm.get('emailId')?.hasError('email') && addressDetailForm.get('emailId')?.touched">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="addressDetailForm.get('emailId')?.hasError('required')">
+                    Email address is Required
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row" style="padding: 15px 0px;">
+        <strong>Phone Details</strong>
+
+    </div>
+
+    <div class="row" formGroupName="phone">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                <mat-label>Preferred</mat-label>
+                <mat-select formControlName="preferred">
+                    <mat-option [value]="'home'">
+                        Home
+                    </mat-option>
+                    <mat-option [value]="'office'">
+                        Office
+                    </mat-option>
+                    <mat-option [value]="'mobile'">
+                        Mobile
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addressDetailForm.get('phone.preferred')?.hasError('required')">
+                    Preferred is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input matInput formControlName="mobile">
+                <mat-icon matSuffix>phonelink_setup</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('phone.mobile')?.hasError('required')">
+                    Mobile is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" formGroupName="phone">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Home</mat-label>
+                <input matInput formControlName="home">
+                <mat-icon matSuffix>contacts</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('phone.home')?.hasError('required')">
+                    Home is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Office</mat-label>
+                <input matInput formControlName="office">
+                <mat-icon matSuffix>call_end</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('phone.office')?.hasError('required')">
+                    Office is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </div>
+
+
+    <div class="row" style="padding: 15px 0px;">
+        <strong>Address Details</strong>
+
+    </div>
+
+    <div class="row" formGroupName="addresses">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Street</mat-label>
+                <input matInput formControlName="line1">
+                <mat-icon matSuffix>pin_drop</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('addresses.line1')?.hasError('required')">
+                    Mobile is required
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="line2">
+                <mat-icon matSuffix>place</mat-icon>
+
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" formGroupName="addresses">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="state">
+                <mat-icon matSuffix>store_mall_directory</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('addresses.state')?.hasError('required')">
+                    State is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city">
+                <mat-icon matSuffix>satellite</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('addresses.city')?.hasError('required')">
+                    City is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </div>
+
+    <div class="row" formGroupName="addresses">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="country">
+                <mat-icon matSuffix>streetview</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('addresses.country')?.hasError('required')">
+                    Country is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Zipcode</mat-label>
+                <input matInput formControlName="zipcode" type="number">
+                <mat-icon matSuffix>my_location</mat-icon>
+                <mat-error *ngIf="addressDetailForm.get('addresses.zipcode')?.hasError('required')">
+                    Zipcode is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <button class="btn-space" mat-raised-button color="primary"
+                [disabled]="!addressDetailForm.valid">Submit</button>
+            <button type="button" mat-button>Cancel</button>
+        </div>
+    </div>
+</form>

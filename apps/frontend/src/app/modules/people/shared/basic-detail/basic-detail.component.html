@@ -1,0 +1,119 @@
+<form class="register-form m-4" [formGroup]="basicDetailForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                <mat-label>Date of Joining</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="doj" required>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="basicDetailForm.get('doj')?.hasError('required')">
+                    Please select date
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="dob" required>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error *ngIf="basicDetailForm.get('dob')?.hasError('required')">
+                    Please select date
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>bloodGroup</mat-label>
+                <input type="text" matInput formControlName="bloodGroup" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of bloodfilteredOptions | async" [value]="option.value">
+                        {{option.name}}
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="basicDetailForm.get('bloodGroup')?.hasError('required')">
+                    bloodGroup is required
+                </mat-error>
+            </mat-form-field>
+
+
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" required>
+                    <mat-option [value]="'MALE'">
+                        Male
+                    </mat-option>
+                    <mat-option [value]="'FEMALE'">
+                        Female
+                    </mat-option>
+                    <mat-option [value]="'OTHER'">
+                        Other
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="basicDetailForm.get('gender')?.hasError('required')">
+                    Gender is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Religion</mat-label>
+                <input matInput formControlName="religion" required>
+                <mat-icon matSuffix>mood</mat-icon>
+                <mat-error *ngIf="basicDetailForm.get('religion')?.hasError('required')">
+                    Religion is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Caste</mat-label>
+                <input matInput formControlName="caste">
+                <mat-icon matSuffix>whatshot</mat-icon>
+                <mat-error *ngIf="basicDetailForm.get('caste')?.hasError('required')">
+                    Caste is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Language</mat-label>
+                <input matInput formControlName="language" required>
+                <mat-icon matSuffix>ac_unit</mat-icon>
+                <mat-error *ngIf="basicDetailForm.get('language')?.hasError('required')">
+                    Language is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Nationality</mat-label>
+                <input matInput formControlName="nationality">
+                <mat-icon matSuffix>child_care</mat-icon>
+                <mat-error *ngIf="basicDetailForm.get('nationality')?.hasError('required')">
+                    Nationality is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <button class="btn-space" mat-raised-button color="primary"
+                [disabled]="!basicDetailForm.valid">Submit</button>
+            <button type="button" mat-button>Cancel</button>
+        </div>
+    </div>
+</form>

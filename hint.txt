@@ -1,0 +1,11 @@
+Add Common Config 
+
+1) Sidebar config.
+2) project School or College
+
+nx g @nrwl/angular:ngrx courses --module=apps/frontend/src/app/modules/admin/courses/courses.module.ts --directory +state --no-interactive
+
+
+
+
+https://intense-beyond-33016.herokuapp.com/ | https://git.heroku.com/intense-beyond-33016.git

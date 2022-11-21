@@ -1,0 +1,161 @@
+<div class="table-responsive">
+    <div class="materialTableHeader">
+        <div class="row">
+            <div class="col-8">
+                <ul class="header-buttons-left ms-0">
+                    <li class="dropdown">
+                        <h2><strong>{{pageName}}</strong></h2>
+                    </li>
+                    <li class="dropdown m-l-20"><label for="search-input"><i
+                                class="material-icons search-icon">search</i></label><input placeholder="Search"
+                            [(ngModel)]="value" type="text" aria-label="Search box" class="browser-default search-field"
+                            (keyup)="applyFilter($event)"></li>
+                    <li>
+                        <div matTooltip="ADD" class="mat-tooltip-trigger m-l-10"><button mat-mini-fab="" color="primary"
+                                class="mat-focus-indicator mat-mini-fab mat-button-base mat-primary"
+                                (click)="$event.stopPropagation();onTableAction('ADD')"><span
+                                    class="mat-button-wrapper">
+                                    <mat-icon role="img"
+                                        class="mat-icon notranslate col-white material-icons mat-icon-no-color"
+                                        aria-hidden="true" data-mat-icon-type="font">add</mat-icon>
+                                </span><span matripple=""
+                                    class="mat-ripple mat-button-ripple mat-button-ripple-round"></span><span
+                                    class="mat-button-focus-overlay"></span></button></div>
+                        <!--container-->
+                    </li>
+                    <li>
+                        <div matTooltip="REFRESH" class="mat-tooltip-trigger m-l-10"><button mat-mini-fab=""
+                                color="primary" class="mat-focus-indicator mat-mini-fab mat-button-base mat-primary"
+                                (click)="refresh();value=''"><span class="mat-button-wrapper">
+                                    <mat-icon role="img"
+                                        class="mat-icon notranslate col-white material-icons mat-icon-no-color"
+                                        aria-hidden="true" data-mat-icon-type="font">refresh</mat-icon>
+                                </span><span matripple=""
+                                    class="mat-ripple mat-button-ripple mat-button-ripple-round"></span><span
+                                    class="mat-button-focus-overlay"></span></button></div>
+                        <!--container-->
+                    </li>
+                    <li>
+                        <div matTooltip="DELETE" class="mat-tooltip-trigger m-l-10" hidden="">
+                            <button mat-mini-fab="" color="warn"
+                                class="mat-focus-indicator mat-mini-fab mat-button-base mat-warn"><span
+                                    class="mat-button-wrapper">
+                                    <mat-icon role="img"
+                                        class="mat-icon notranslate col-white material-icons mat-icon-no-color"
+                                        aria-hidden="true" data-mat-icon-type="font">delete </mat-icon>
+                                </span><span matripple=""
+                                    class="mat-ripple mat-button-ripple mat-button-ripple-round"></span><span
+                                    class="mat-button-focus-overlay"></span></button>
+                        </div>
+                        <!--container-->
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <ul class="header-buttons">
+                    <li>
+                        <div matTooltip="XLSX" class="mat-tooltip-trigger export-button m-l-10">
+                            <a (click)="exporter.exportTable('xlsx')">
+                                <img src="assets/images/icons/xlsx.png" alt="">
+                            </a>
+
+                        </div>
+                        <!--container-->
+                    </li>
+                    <li>
+                        <div matTooltip="CSV" class="mat-tooltip-trigger export-button m-l-10">
+                            <a (click)="exporter.exportTable('csv')">
+                                <img src="assets/images/icons/csv.png" alt="">
+                            </a>
+
+                        </div>
+                        <!--container-->
+                    </li>
+                    <li>
+                        <div matTooltip="TXT" class="mat-tooltip-trigger export-button m-l-10">
+                            <a (click)="exporter.exportTable('txt')">
+                                <img src="assets/images/icons/txt.png" alt="">
+                            </a>
+
+                        </div>
+                        <!--container-->
+                    </li>
+                    <li>
+                        <div matTooltip="JSON" class="mat-tooltip-trigger export-button m-l-10">
+                            <a (click)="exporter.exportTable('json')">
+                                <img src="assets/images/icons/json.png" alt="">
+                            </a>
+
+                        </div>
+                        <!--container-->
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort matTableExporter
+        #exporter="matTableExporter">
+        <!-- checkbox header -->
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <!-- table dynamic columns -->
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row[column.columnDef] }}</mat-cell>
+        </ng-container>
+
+        <!-- table action column -->
+        <!-- <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell *matCellDef="let element" action-buttons [value]="element" (buttonAction)="onTableAction($event)">
+                {{ element.weight }}
+            </mat-cell>
+        </ng-container> -->
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell class="pr-0" *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                <button mat-icon-button (click)="$event.stopPropagation();onTableAction('EDIT', row)"
+                    class="tbl-action-btn">
+                    <demo-nx-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'">
+                    </demo-nx-feather-icons>
+                </button>
+                <button mat-icon-button (click)="$event.stopPropagation();onTableAction('VIEW')" class="tbl-action-btn">
+                    <demo-nx-feather-icons [icon]="'eye'" [class]="'tbl-fav-view'">
+                    </demo-nx-feather-icons>
+                </button>
+                <button mat-icon-button (click)="$event.stopPropagation();onTableAction('DELETE', row)"
+                    class="tbl-action-btn">
+                    <demo-nx-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'">
+                    </demo-nx-feather-icons>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <!-- Loading spinner -->
+    <!-- <div *ngIf="exampleDatabase.isTblLoading" class="tbl-spinner">
+        <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+    <div *ngIf="!exampleDatabase.isTblLoading" class="no-results"
+        [style.display]="dataSource.length === 0 ? '' : 'none'">
+        No results
+    </div> -->
+    <mat-paginator [pageSizeOptions]="[5,10,15, 20]" showFirstLastButtons></mat-paginator>
+</div>

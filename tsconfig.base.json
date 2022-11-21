@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": "./",
+    "paths": {
+      "@demo-nx/auth": ["libs/auth/src/index.ts"],
+      "@demo-nx/dynamic-table": ["libs/dynamic-table/src/index.ts"],
+      "@demo-nx/interfaces": ["libs/interfaces/src/index.ts"],
+      "@demo-nx/layout": ["libs/layout/src/index.ts"],
+      "@demo-nx/material": ["libs/material/src/index.ts"],
+      "@demo-nx/shared": ["libs/shared/src/index.ts"],
+      "@services/*": ["apps/frontend/src/app/services/*"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,143 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <demo-nx-breadcrumb [title]="'Add Course'" [items]="['Courses']" [active_item]="'Add Course'">
+            </demo-nx-breadcrumb>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Add Course</h2>
+
+                    </div>
+                    <div class="body">
+                        <form class="register-form m-4" [formGroup]="courseDetailForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Course Name</mat-label>
+                                        <input matInput formControlName="courseName">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error *ngIf="courseDetailForm.get('courseName')?.hasError('required')">
+                                            courseName is Required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Course Code</mat-label>
+                                        <input matInput formControlName="courseCode">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error *ngIf="courseDetailForm.get('courseCode')?.hasError('required')">
+                                            courseCode is Required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Course Detail</mat-label>
+                                        <input matInput formControlName="courseDetail">
+                                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                                        <mat-icon matSuffix>email</mat-icon>
+
+                                    </mat-form-field>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Start Date</mat-label>
+                                        <input matInput [matDatepicker]="picker1" formControlName="startDate" required>
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                        <mat-error *ngIf="courseDetailForm.get('startDate')?.hasError('required')">
+                                            Please select date
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Course Time Length</mat-label>
+                                        <input matInput formControlName="timeLength">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error *ngIf="courseDetailForm.get('timeLength')?.hasError('required')">
+                                            TimeLength is Required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Course Price</mat-label>
+                                        <input matInput formControlName="coursePrice">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error *ngIf="courseDetailForm.get('coursePrice')?.hasError('required')">
+                                            Price is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Professsor Name</mat-label>
+                                        <input matInput formControlName="professorDetail">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error
+                                            *ngIf="courseDetailForm.get('professorDetail')?.hasError('required')">
+                                            Professor is Required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Maximum Students Length</mat-label>
+                                        <input matInput formControlName="maxStudent">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error *ngIf="courseDetailForm.get('maxStudent')?.hasError('required')">
+                                            Maximum Student is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Contact Number</mat-label>
+                                        <input matInput formControlName="contact">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error *ngIf="courseDetailForm.get('contact')?.hasError('required')">
+                                            Contact is Required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <button class="btn-space" mat-raised-button color="primary"
+                                        [disabled]="!courseDetailForm.valid">Submit</button>
+                                    <button type="button" mat-button>Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
